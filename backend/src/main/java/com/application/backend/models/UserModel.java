@@ -1,14 +1,14 @@
-package com.server.backend.models;
+package com.application.backend.models;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "userr")
+@Table(name = "userr", schema = "sp_library")
 public class UserModel {
 
     @Id
     @Column(unique = true, nullable = false)
-    private String id;
+    private String dni;
 
     @Column(nullable = false)
     private String name;
@@ -22,22 +22,12 @@ public class UserModel {
     @Column(nullable = false)
     private String password;
 
-    UserModel() {}
-    public UserModel(String id, String name, String lastname, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
+    public String getDni() {
+        return dni;
     }
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getName() {

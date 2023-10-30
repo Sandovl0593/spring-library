@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS userr (
 );
 
 CREATE TABLE IF NOT EXISTS book (
-    id VARCHAR(8) PRIMARY KEY NOT NULL,
+    code VARCHAR(8) PRIMARY KEY NOT NULL,
     title VARCHAR(100) NOT NULL,
     author VARCHAR(255) NOT NULL,
     genero VARCHAR(32) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS book (
 );
 
 CREATE TABLE IF NOT EXISTS buy (
-    id VARCHAR(8) PRIMARY KEY NOT NULL,
+    boucher VARCHAR(8) PRIMARY KEY NOT NULL,
     client VARCHAR(8) NOT NULL,
     book_id VARCHAR(8) NOT NULL,
     units INTEGER NOT NULL,
@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS buy (
 );
 
 CREATE TABLE IF NOT EXISTS stand (
-    id VARCHAR(8) PRIMARY KEY NOT NULL,
     book_id VARCHAR(8) NOT NULL,
     owner VARCHAR(8) NOT NULL,
     units INTEGER NOT NULL   -- se acumula la cantidad que tiene y cada fila es
@@ -38,6 +37,6 @@ CREATE TABLE IF NOT EXISTS stand (
 );
 
 ALTER TABLE buy ADD CONSTRAINT buy_fk_user FOREIGN KEY (client) REFERENCES userr(dni);
-ALTER TABLE buy ADD CONSTRAINT buy_fk_book FOREIGN KEY (book_id) REFERENCES book(id);
+ALTER TABLE buy ADD CONSTRAINT buy_fk_book FOREIGN KEY (book_id) REFERENCES book(code);
 ALTER TABLE stand ADD CONSTRAINT stand_fk_owner FOREIGN KEY (owner) REFERENCES userr(dni);
-ALTER TABLE stand ADD CONSTRAINT stand_fk_book FOREIGN KEY (book_id) REFERENCES book(id);
+ALTER TABLE stand ADD CONSTRAINT stand_fk_book FOREIGN KEY (book_id) REFERENCES book(code);

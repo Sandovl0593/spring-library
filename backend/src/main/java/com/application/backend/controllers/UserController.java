@@ -1,7 +1,7 @@
-package com.server.backend.controllers;
+package com.application.backend.controllers;
 
-import com.server.backend.models.UserModel;
-import com.server.backend.services.UserService;
+import com.application.backend.models.UserModel;
+import com.application.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
