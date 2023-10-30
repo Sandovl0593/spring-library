@@ -6,34 +6,42 @@ import jakarta.persistence.*;
 @Table(name = "stand")
 public class StandModel {
 
+    @Id
     @Column(nullable = false)
-    private String book_id;
+    private String id;
 
-    @Column(nullable = false)
-    private String owner;
+    @ManyToOne
+    @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = false)
+    private BookModel book_id;
+
+    @ManyToOne
+    @JoinColumn(name = "owner", referencedColumnName = "dni", nullable = false)
+    private UserModel owner;
 
     @Column(nullable = false)
     private Integer units;
 
-    public StandModel(String book_id, String owner, Integer units) {
+    public StandModel() {}
+    public StandModel(String id, BookModel book_id, UserModel owner, Integer units) {
+        this.id = id;
         this.book_id = book_id;
         this.owner = owner;
         this.units = units;
     }
 
-    public String getBook_id() {
+    public BookModel getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(String book_id) {
+    public void setBook_id(BookModel book_id) {
         this.book_id = book_id;
     }
 
-    public String getOwner() {
+    public UserModel getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(UserModel owner) {
         this.owner = owner;
     }
 

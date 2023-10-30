@@ -2,6 +2,8 @@ package com.server.backend.models;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "buy")
 public class BuyModel {
@@ -10,22 +12,26 @@ public class BuyModel {
     @Column(unique = true, nullable = false)
     private String id;
 
-    @Column(nullable = false)
-    private String client;
+    @ManyToOne
+    @JoinColumn(name = "client", referencedColumnName = "dni", nullable = false)
+    private UserModel client;
 
-    @Column(nullable = false)
-    private String book_id;
+    @ManyToOne
+    @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = false)
+    private BookModel book_id;
 
     @Column(nullable = false)
     private Integer units;
 
     @Column(nullable = false)
-    private String time_buy;
+    private Timestamp time_buy;
 
     @Column(nullable = false)
     private Integer refund_days;
 
-    public BuyModel(String id, String client, String book_id, Integer units, String time_buy, Integer refund_days) {
+    BuyModel() {}
+
+    public BuyModel(String id, UserModel client, BookModel book_id, Integer units, Timestamp time_buy, Integer refund_days) {
         this.id = id;
         this.client = client;
         this.book_id = book_id;
@@ -42,19 +48,19 @@ public class BuyModel {
         this.id = id;
     }
 
-    public String getClient() {
+    public UserModel getClient() {
         return client;
     }
 
-    public void setClient(String client) {
+    public void setClient(UserModel client) {
         this.client = client;
     }
 
-    public String getBook_id() {
+    public BookModel getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(String book_id) {
+    public void setBook_id(BookModel book_id) {
         this.book_id = book_id;
     }
 
@@ -66,11 +72,11 @@ public class BuyModel {
         this.units = units;
     }
 
-    public String getTime_buy() {
+    public Timestamp getTime_buy() {
         return time_buy;
     }
 
-    public void setTime_buy(String time_buy) {
+    public void setTime_buy(Timestamp time_buy) {
         this.time_buy = time_buy;
     }
 

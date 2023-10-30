@@ -31,6 +31,7 @@ public class BookModel {
     @Column(nullable = false)
     private Long units_stock;
 
+    public BookModel() {}
     public BookModel(String id, String title, String author, String genero, String editorial, Integer num_pages, Double price, Long units_stock) {
         this.id = id;
         this.title = title;

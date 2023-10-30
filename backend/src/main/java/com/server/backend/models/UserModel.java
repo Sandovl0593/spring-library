@@ -22,6 +22,7 @@ public class UserModel {
     @Column(nullable = false)
     private String password;
 
+    UserModel() {}
     public UserModel(String id, String name, String lastname, String email, String password) {
         this.id = id;
         this.name = name;
@@ -29,6 +30,7 @@ public class UserModel {
         this.email = email;
         this.password = password;
     }
+
 
     public String getId() {
         return id;
