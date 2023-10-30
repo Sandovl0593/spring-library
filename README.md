@@ -1,2 +1,2 @@
-# Spring-Pokedex
-Podedex project with Spring Boot and React
+# Spring-Library
+Service library using Spring Boot and React
