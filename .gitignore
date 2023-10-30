@@ -2,7 +2,7 @@
 */target/
 !*/.mvn/wrapper/maven-wrapper.jar
 */target/
-!*/**/src/main/resouces
+*/src/main/resources/application.properties
 
 
 */npm-debug.log*
