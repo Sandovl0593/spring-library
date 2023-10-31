@@ -3,7 +3,11 @@ package com.application.backend.models;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import lombok.*;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "buy", schema = "sp_library")
 public class BuyModel {
@@ -17,7 +21,7 @@ public class BuyModel {
     private UserModel client;
 
     @ManyToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "book_id", referencedColumnName = "code", nullable = false)
     private BookModel book_id;
 
     @Column(nullable = false)

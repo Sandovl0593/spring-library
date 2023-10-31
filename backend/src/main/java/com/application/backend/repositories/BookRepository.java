@@ -12,4 +12,6 @@ public interface BookRepository extends CrudRepository<BookModel, String> {
 
     @Query("SELECT b FROM BookModel b WHERE b.price BETWEEN ?1 AND ?2")
     List<BookModel> findByPriceInRange(Double minPrice, Double maxPrice);
+
+
 }

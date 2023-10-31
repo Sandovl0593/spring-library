@@ -1,24 +1,17 @@
 package com.application.backend.services;
 
 import com.application.backend.models.UserModel;
-import com.application.backend.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class UserService {
-    @Autowired
-    UserRepository userRepository;
+public interface UserService {
 
-    // get para mostrar la lista de usuarios
-    public List<UserModel> getUsers() {
-        return (List<UserModel>) userRepository.findAll();
-    }
+    List<UserModel> findAll();  // listar los usuarios
 
-    // post para registrar un nuevo usuario
-    public UserModel registerUser(UserModel userr) {
-        return userRepository.save(userr);
-    }
+    Optional<UserModel> findByDni(String dni);  // mostrar un usuario por dni
+
+    void save(UserModel user);  // agregar un nuevo usuario
+
+    void deleteByDni(String dni);  // eliminar cuenta (usuario)
 }

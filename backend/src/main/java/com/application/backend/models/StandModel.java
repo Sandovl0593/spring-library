@@ -1,7 +1,11 @@
 package com.application.backend.models;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "stand", schema = "sp_library")
 public class StandModel {
@@ -12,7 +16,7 @@ public class StandModel {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "book_id", referencedColumnName = "code", nullable = false)
     private BookModel book_id;
 
     @ManyToOne

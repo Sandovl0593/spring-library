@@ -1,7 +1,11 @@
 package com.application.backend.models;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "book", schema = "sp_library")
 public class BookModel {
