@@ -13,13 +13,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping()   // peticion get que muestre la lista de usuarios
+    @GetMapping()   // get para mostrar la lista de usuarios
     public ArrayList<UserModel> getUsers() {
         return userService.getUsers();
     }
 
-    @PostMapping()  // peticion post para almacenar un usuario en la lista de usuarios del repositorio
-    public UserModel setUser(@RequestBody UserModel userModel) {
-        return this.userService.setUser(userModel);
+    @PostMapping()  // post para registrar un nuevo usuario
+    public UserModel registerUser(@RequestBody UserModel userModel) {
+        return this.userService.registerUser(userModel);
     }
+
 }

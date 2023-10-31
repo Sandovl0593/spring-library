@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS buy (
 );
 
 CREATE TABLE IF NOT EXISTS stand (
+    id INTEGER PRIMARY KEY NOT NULL,
     book_id VARCHAR(8) NOT NULL,
     owner VARCHAR(8) NOT NULL,
     units INTEGER NOT NULL   -- se acumula la cantidad que tiene y cada fila es
