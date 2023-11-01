@@ -10,8 +10,9 @@ import java.util.List;
 @Repository
 public interface BookRepository extends CrudRepository<BookModel, String> {
 
-    @Query("SELECT b FROM BookModel b WHERE b.price BETWEEN ?1 AND ?2")
-    List<BookModel> findByPriceInRange(Double minPrice, Double maxPrice);
+    @Query("SELECT b FROM BookModel b WHERE b.author like %?1%")
+    List<BookModel> findBookByAuthor(String nameAuthor);
 
-
+    @Query("SELECT b FROM BookModel b WHERE b.genero like %?1%")
+    List<BookModel> findBookByGenero(String genero);
 }

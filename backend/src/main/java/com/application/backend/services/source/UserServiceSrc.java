@@ -26,12 +26,13 @@ public class UserServiceSrc implements UserService {
     }
 
     @Override
-    public void save(UserModel user) {
-        userDAO.save(user);
+    public void registerUser(UserModel user) {
+        userDAO.register(user);
     }
 
     @Override
     public void deleteByDni(String dni) {
         userDAO.deleteByDni(dni);
     }
+
 }

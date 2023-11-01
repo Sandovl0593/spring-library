@@ -10,7 +10,7 @@ public interface IUserDAO {
 
     Optional<UserModel> findByDni(String dni);  // mostrar un usuario por dni
 
-    void save(UserModel user);  // agregar un nuevo usuario
+    void register(UserModel user);  // agregar un nuevo usuario
 
     void deleteByDni(String dni);  // eliminar cuenta (usuario)
 }

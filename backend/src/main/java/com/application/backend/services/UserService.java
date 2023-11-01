@@ -11,7 +11,7 @@ public interface UserService {
 
     Optional<UserModel> findByDni(String dni);  // mostrar un usuario por dni
 
-    void save(UserModel user);  // agregar un nuevo usuario
+    void registerUser(UserModel user);  // agregar un nuevo usuario
 
     void deleteByDni(String dni);  // eliminar cuenta (usuario)
 }

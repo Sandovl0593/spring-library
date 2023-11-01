@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     UserServiceSrc userService;
 
-    @GetMapping()   // get para mostrar la lista de usuarios
+    @GetMapping("/all")   // get para mostrar la lista de usuarios
     public List<UserModel> getUsers() {
         return userService.findAll();
     }
@@ -41,10 +41,20 @@ public class UserController {
     @PostMapping()  // post para registrar un nuevo usuario
     public ResponseEntity<?> registerUser(@RequestBody UserModel user) {
         try {
-            this.userService.save(user);
+            this.userService.registerUser(user);
             return ResponseEntity.status(HttpStatus.OK).body("Usuario insertado correctamente");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el usuario");
+        }
+    }
+
+    @DeleteMapping("/{dni}")
+    public ResponseEntity<?> deleteByDni(@PathVariable String dni) {
+        try {
+            this.userService.deleteByDni(dni);
+            return ResponseEntity.status(HttpStatus.OK).body("Usuario eliminado correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar el usuario");
         }
     }
 

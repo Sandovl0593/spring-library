@@ -26,17 +26,12 @@ public class BookServiceSrc implements BookService {
     }
 
     @Override
-    public List<BookModel> findByPriceInRange(Double minPrice, Double maxPrice) {
-        return bookDAO.findByPriceInRange(minPrice, maxPrice);
+    public List<BookModel> findBookByAuthor(String nameAuthor) {
+        return bookDAO.findBookByAuthor(nameAuthor);
     }
 
     @Override
-    public void save(BookModel book) {
-        bookDAO.save(book);
-    }
-
-    @Override
-    public void deleteByCode(String code) {
-        bookDAO.deleteByCode(code);
+    public List<BookModel> findBookByGenero(String genero) {
+        return bookDAO.findBookByGenero(genero);
     }
 }

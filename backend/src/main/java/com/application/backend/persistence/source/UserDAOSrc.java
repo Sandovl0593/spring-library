@@ -26,7 +26,7 @@ public class UserDAOSrc implements IUserDAO {
     }
 
     @Override
-    public void save(UserModel user) {
+    public void register(UserModel user) {
         userRepository.save(user);
     }
 

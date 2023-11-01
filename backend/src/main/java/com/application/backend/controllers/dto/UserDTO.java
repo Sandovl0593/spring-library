@@ -13,6 +13,4 @@ public class UserDTO {
     private String lastname;
     private String email;
     private String password;
-
-    // private List<UserModel> registerUsers = new ArrayList<>();
 }

@@ -11,9 +11,8 @@ public interface BookService {
 
     Optional<BookModel> findByCode(String code);
 
-    List<BookModel> findByPriceInRange(Double minPrice, Double maxPrice);
+    List<BookModel> findBookByAuthor(String nameAuthor);
 
-    void save(BookModel book);
+    List<BookModel> findBookByGenero(String genero);
 
-    void deleteByCode(String code);
 }

@@ -10,9 +10,7 @@ public interface IBookDAO {
 
     Optional<BookModel> findByCode(String code);
 
-    List<BookModel> findByPriceInRange(Double minPrice, Double maxPrice);
+    List<BookModel> findBookByAuthor(String nameAuthor);
 
-    void save(BookModel book);
-
-    void deleteByCode(String code);
+    List<BookModel> findBookByGenero(String genero);
 }

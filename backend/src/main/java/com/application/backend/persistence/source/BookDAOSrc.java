@@ -26,17 +26,12 @@ public class BookDAOSrc implements IBookDAO {
     }
 
     @Override
-    public List<BookModel> findByPriceInRange(Double minPrice, Double maxPrice) {
-        return bookRepository.findByPriceInRange(minPrice, maxPrice);
+    public List<BookModel> findBookByAuthor(String nameAuthor){
+        return bookRepository.findBookByAuthor(nameAuthor);
     }
 
     @Override
-    public void save(BookModel book) {
-        bookRepository.save(book);
-    }
-
-    @Override
-    public void deleteByCode(String code) {
-        bookRepository.deleteById(code);
+    public List<BookModel> findBookByGenero(String genero){
+        return bookRepository.findBookByGenero(genero);
     }
 }
