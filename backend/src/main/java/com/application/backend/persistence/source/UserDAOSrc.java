@@ -31,6 +31,11 @@ public class UserDAOSrc implements IUserDAO {
     }
 
     @Override
+    public void updateEmPass(String newEmail, String newPass, String dni) {
+        userRepository.updateEmPass(newEmail, newPass, dni);
+    }
+
+    @Override
     public void deleteByDni(String dni) {
         userRepository.deleteById(dni);
     }

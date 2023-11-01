@@ -31,7 +31,17 @@ public class BookDAOSrc implements IBookDAO {
     }
 
     @Override
+    public void register(BookModel user) {
+        bookRepository.save(user);
+    }
+
+    @Override
     public List<BookModel> findBookByGenero(String genero){
         return bookRepository.findBookByGenero(genero);
+    }
+
+    @Override
+    public void reduceUnits(Integer cant, String bookcode) {
+        bookRepository.reduceUnits(cant, bookcode);
     }
 }

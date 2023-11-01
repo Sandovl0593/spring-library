@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS buy (
     book_id VARCHAR(8) NOT NULL,
     units INTEGER NOT NULL,
     time_buy TIMESTAMP NOT NULL,   -- tiempo current de compra
-    refund_days INTEGER NOT NULL  -- dias habiles de reembolso
 );
 
 CREATE TABLE IF NOT EXISTS stand (

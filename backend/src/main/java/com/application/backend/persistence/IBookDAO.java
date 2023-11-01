@@ -10,7 +10,11 @@ public interface IBookDAO {
 
     Optional<BookModel> findByCode(String code);
 
+    void register(BookModel user);
+
     List<BookModel> findBookByAuthor(String nameAuthor);
 
     List<BookModel> findBookByGenero(String genero);
+
+    void reduceUnits(Integer cant, String bookcode);
 }

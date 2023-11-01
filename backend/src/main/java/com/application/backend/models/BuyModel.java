@@ -30,9 +30,6 @@ public class BuyModel {
     @Column(nullable = false)
     private Timestamp time_buy;
 
-    @Column(nullable = false)
-    private Integer refund_days;
-
     public String getBoucher() {
         return boucher;
     }
@@ -73,11 +70,4 @@ public class BuyModel {
         this.time_buy = time_buy;
     }
 
-    public Integer getRefund_days() {
-        return refund_days;
-    }
-
-    public void setRefund_days(Integer refund_days) {
-        this.refund_days = refund_days;
-    }
 }

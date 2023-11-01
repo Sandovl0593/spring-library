@@ -17,9 +17,19 @@ public class UserController {
     @Autowired
     UserServiceSrc userService;
 
-    @GetMapping("/all")   // get para mostrar la lista de usuarios
-    public List<UserModel> getUsers() {
-        return userService.findAll();
+    private Boolean incompleteUser(UserDTO user) {
+        return user.getDni().isBlank() || user.getName().isBlank() || user.getLastname().isBlank() ||
+                user.getEmail().isBlank() || user.getPassword().isBlank();
+    }
+
+    @GetMapping("/all")   // get para mostrar la lista de usuarios (no visible para UI)
+    public ResponseEntity<?> getUsers() {
+        List<UserDTO> userList = userService.findAll().stream()
+                .map(user -> UserDTO.builder().dni(user.getDni())
+                        .name(user.getName()).lastname(user.getLastname())
+                        .email(user.getEmail()).password(user.getPassword()).build()
+                ).toList();
+        return ResponseEntity.ok(userList);
     }
 
     @GetMapping("/{dni}")  // get para mostrar el usuario por dni
@@ -39,16 +49,30 @@ public class UserController {
     }
 
     @PostMapping()  // post para registrar un nuevo usuario
-    public ResponseEntity<?> registerUser(@RequestBody UserModel user) {
+    public ResponseEntity<?> registerUser(@RequestBody UserDTO user) {
+        if (incompleteUser(user))
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registro incompleto");
         try {
-            this.userService.registerUser(user);
+            this.userService.registerUser(UserModel.builder().dni(user.getDni())
+                    .name(user.getName()).lastname(user.getLastname())
+                    .email(user.getEmail()).password(user.getPassword()).build());
             return ResponseEntity.status(HttpStatus.OK).body("Usuario insertado correctamente");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el usuario");
         }
     }
 
-    @DeleteMapping("/{dni}")
+    @PutMapping("/{dni}/{email}/{pass}")  // post para actualizar el email y pass del usuario por su dni (almacenada en Hook React)
+    public ResponseEntity<?> updateEmailPass(@PathVariable String dni, @PathVariable String email, @PathVariable String pass) {
+        try {
+            this.userService.updateEmPass(email, pass, dni);
+            return ResponseEntity.status(HttpStatus.OK).body("Datos del usuario actualizados");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error de actualizacion del usuario");
+        }
+    }
+
+    @DeleteMapping("/{dni}")  // delete para eliminar el usuario
     public ResponseEntity<?> deleteByDni(@PathVariable String dni) {
         try {
             this.userService.deleteByDni(dni);

@@ -31,6 +31,11 @@ public class UserServiceSrc implements UserService {
     }
 
     @Override
+    public void updateEmPass(String newEmail, String newPass, String dni) {  // actualizar datos del usuario
+        userDAO.updateEmPass(newEmail, newPass, dni);
+    }
+
+    @Override
     public void deleteByDni(String dni) {
         userDAO.deleteByDni(dni);
     }

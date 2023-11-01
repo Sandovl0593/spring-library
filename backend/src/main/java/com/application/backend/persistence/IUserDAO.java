@@ -12,5 +12,7 @@ public interface IUserDAO {
 
     void register(UserModel user);  // agregar un nuevo usuario
 
+    void updateEmPass(String newEmail, String newPass, String dni);  // actualizar datos del usuario
+
     void deleteByDni(String dni);  // eliminar cuenta (usuario)
 }

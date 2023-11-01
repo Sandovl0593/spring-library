@@ -26,6 +26,11 @@ public class BookServiceSrc implements BookService {
     }
 
     @Override
+    public void registerBook(BookModel book) {  // no usado en la UI
+        bookDAO.register(book);
+    }
+
+    @Override
     public List<BookModel> findBookByAuthor(String nameAuthor) {
         return bookDAO.findBookByAuthor(nameAuthor);
     }
@@ -33,5 +38,10 @@ public class BookServiceSrc implements BookService {
     @Override
     public List<BookModel> findBookByGenero(String genero) {
         return bookDAO.findBookByGenero(genero);
+    }
+
+    @Override
+    public void reduceUnits(Integer cant, String bookcode) {
+        bookDAO.reduceUnits(cant, bookcode);
     }
 }
