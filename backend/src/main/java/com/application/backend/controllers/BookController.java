@@ -31,10 +31,23 @@ public class BookController {
     }
 
     @PostMapping()
+    public ResponseEntity<?> registerBook(@RequestBody BookModel book) {
+        try {
+            this.bookService.registerBook(BookModel.builder().code(book.getCode())
+                    .title(book.getTitle()).author(book.getAuthor())
+                    .genero(book.getGenero()).editorial(book.getEditorial())
+                    .num_pages(book.getNum_pages()).price(book.getPrice())
+                    .units_stock(book.getUnits_stock())
+                    .build());
+            return ResponseEntity.status(HttpStatus.OK).body("Libro introducido correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al introducir el libro");
+        }
+    }
 
 
     @GetMapping("/getCode/{code}")  // get para mostrar el libro por code
-    public ResponseEntity<?> getByDni(@PathVariable String code) {
+    public ResponseEntity<?> getByCode(@PathVariable String code) {
         Optional<BookModel> findBook = bookService.findByCode(code);
 
         if (findBook.isPresent()) {

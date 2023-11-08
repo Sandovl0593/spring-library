@@ -28,8 +28,8 @@ public class BuyController {
     @Autowired
     UserServiceSrc userService;
 
-    BookModel currentBook;
-    UserModel currentUser;
+    private BookModel currentBook;
+    private UserModel currentUser;
 
     @GetMapping("/all")  // get para mostrar la lista de compras (no visible para UI)
     public ResponseEntity<?> getPurchases() {

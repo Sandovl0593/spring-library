@@ -50,7 +50,7 @@ public class UserController {
 
     @PostMapping()  // post para registrar un nuevo usuario
     public ResponseEntity<?> registerUser(@RequestBody UserDTO user) {
-        if (incompleteUser(user))
+        if (this.incompleteUser(user))
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registro incompleto");
         try {
             this.userService.registerUser(UserModel.builder().dni(user.getDni())
@@ -62,7 +62,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{dni}/{email}/{pass}")  // post para actualizar el email y pass del usuario por su dni (almacenada en Hook React)
+    @PutMapping("/{dni}/{email}/{pass}")  // put para actualizar el email y pass del usuario por su dni (almacenada en Hook React)
     public ResponseEntity<?> updateEmailPass(@PathVariable String dni, @PathVariable String email, @PathVariable String pass) {
         try {
             this.userService.updateEmPass(email, pass, dni);
