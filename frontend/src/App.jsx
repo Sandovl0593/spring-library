@@ -5,13 +5,13 @@ import './assets/welcome.css'
 
 import {Welcome} from "./views/welcome.jsx";
 
-function AppMain() {
+function App() {
 
   return (
     <div id='App'>
       <nav><div>
         <span>Made with React</span>
-        <a href="https://reactjs.org" target="_blank">
+        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
             <img src={reactLogo} width="70" className="react-logo" alt="React logo"/>
         </a>
       </div></nav>
@@ -21,4 +21,4 @@ function AppMain() {
   )
 }
 
-export default AppMain;
+export default App;
