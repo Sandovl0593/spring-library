@@ -1,21 +1,42 @@
 package com.application.backend.book;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
-public interface BookService {
+@Service
+public class BookService {
 
-    List<BookModel> findAll();
+    @Autowired
+    private BookDAO bookDAO;
 
-    Optional<BookModel> findByCode(String code);
+    public List<BookModel> findAll() {
+        return bookDAO.findAll();
+    }
 
-    void registerBook(BookModel book);  // no usado en la UI
+    public Optional<BookModel> findByCode(String code) {
+        return bookDAO.findByCode(code);
+    }
 
-    List<BookModel> findBookByAuthor(String nameAuthor);
+    public void registerBook(BookModel book) {  // no usado en la UI
+        bookDAO.register(book);
+    }
 
-    List<BookModel> findBookByGenero(String genero);
+    public List<BookModel> findBookByAuthor(String nameAuthor) {
+        return bookDAO.findBookByAuthor(nameAuthor);
+    }
 
-    void reduceUnits(Integer cant, String bookcode);
+    public List<BookModel> findBookByGenero(String genero) {
+        return bookDAO.findBookByGenero(genero);
+    }
 
-    void addUnits(Integer cant, String bookcode);
+    public void reduceUnits(Integer cant, String bookcode) {
+        bookDAO.reduceUnits(cant, bookcode);
+    }
+
+    public void addUnits(Integer cant, String bookcode) {
+        bookDAO.addUnits(cant, bookcode);
+    }
 }

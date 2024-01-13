@@ -1,4 +1,4 @@
-package com.application.backend.user;
+package com.application.backend.user.dto;
 
 import lombok.*;
 
@@ -6,7 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDTO {
+public class RegisterDTO {
 
     private String dni;
     private String name;

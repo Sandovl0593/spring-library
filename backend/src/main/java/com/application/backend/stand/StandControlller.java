@@ -1,6 +1,6 @@
 package com.application.backend.stand;
 
-import com.application.backend.book.BookServiceSrc;
+import com.application.backend.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/stand")
 public class StandControlller {
     @Autowired
-    StandServiceSrc standService;
+    StandService standService;
     @Autowired
-    BookServiceSrc bookService;
+    BookService bookService;
 
     @GetMapping("/all")
     public ResponseEntity<?> getStand() {

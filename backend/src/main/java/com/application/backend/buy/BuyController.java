@@ -2,9 +2,9 @@ package com.application.backend.buy;
 
 import com.application.backend.book.BookModel;
 import com.application.backend.user.UserModel;
-import com.application.backend.book.BookServiceSrc;
-import com.application.backend.stand.StandServiceSrc;
-import com.application.backend.user.service.UserServiceSrc;
+import com.application.backend.book.BookService;
+import com.application.backend.stand.StandService;
+import com.application.backend.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +20,13 @@ import java.util.Random;
 @RequestMapping("/buy")
 public class BuyController {
     @Autowired
-    BuyServiceSrc buyService;
+    BuyService buyService;
     @Autowired
-    BookServiceSrc bookService;
+    BookService bookService;
     @Autowired
-    UserServiceSrc userService;
+    UserService userService;
     @Autowired
-    StandServiceSrc standService;
+    StandService standService;
 
     private BookModel currentBook;
     private UserModel currentUser;

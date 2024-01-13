@@ -2,13 +2,19 @@ package com.application.backend.user;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "userr", schema = "sp_library")
-public class UserModel {
+public class UserModel implements UserDetails {
 
     @Id
     @Column(unique = true, nullable = false)
@@ -34,11 +40,12 @@ public class UserModel {
         this.dni = dni;
     }
 
-    public String getName() {
+    @Override
+    public String getUsername() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setUsername(String name) {
         this.name = name;
     }
 
@@ -58,11 +65,37 @@ public class UserModel {
         this.email = email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("USER"));
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

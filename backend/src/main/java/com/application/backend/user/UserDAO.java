@@ -28,6 +28,10 @@ public class UserDAO {
         userRepository.updateEmPass(newEmail, newPass, dni);
     }
 
+    public Optional<UserModel> getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
+
     public void deleteByDni(String dni) {
         userRepository.deleteById(dni);
     }

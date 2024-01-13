@@ -65,6 +65,23 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.12.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.12.3</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+			<version>0.12.3</version>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -91,11 +108,6 @@
 						<groupId>org.springframework.restdocs</groupId>
 						<artifactId>spring-restdocs-asciidoctor</artifactId>
 						<version>${spring-restdocs.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>io.jsonwebtoken</groupId>
-						<artifactId>jjwt</artifactId>
-						<version>0.9.1</version> <!-- Use the latest version available -->
 					</dependency>
 				</dependencies>
 			</plugin>

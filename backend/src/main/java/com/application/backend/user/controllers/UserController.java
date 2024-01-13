@@ -1,8 +1,9 @@
 package com.application.backend.user.controllers;
 
-import com.application.backend.user.UserDTO;
+import com.application.backend.user.dto.LoginDTO;
+import com.application.backend.user.dto.RegisterDTO;
 import com.application.backend.user.UserModel;
-import com.application.backend.user.service.UserServiceSrc;
+import com.application.backend.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,18 +16,18 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    UserServiceSrc userService;
+    UserService userService;
 
-    private Boolean incompleteUser(UserDTO user) {
+    private Boolean incompleteUser(RegisterDTO user) {
         return user.getDni().isBlank() || user.getName().isBlank() || user.getLastname().isBlank() ||
                 user.getEmail().isBlank() || user.getPassword().isBlank();
     }
 
     @GetMapping("/all")   // get para mostrar la lista de usuarios (no visible para UI)
     public ResponseEntity<?> getUsers() {
-        List<UserDTO> userList = userService.findAll().stream()
-                .map(user -> UserDTO.builder().dni(user.getDni())
-                        .name(user.getName()).lastname(user.getLastname())
+        List<RegisterDTO> userList = userService.findAll().stream()
+                .map(user -> RegisterDTO.builder().dni(user.getDni())
+                        .name(user.getUsername()).lastname(user.getLastname())
                         .email(user.getEmail()).password(user.getPassword()).build()
                 ).toList();
         return ResponseEntity.ok(userList);
@@ -38,8 +39,8 @@ public class UserController {
 
         if (findUser.isPresent()) {
             UserModel user = findUser.get();
-            UserDTO userDTO = UserDTO.builder().dni(user.getDni())
-                    .name(user.getName()).lastname(user.getLastname())
+            RegisterDTO userDTO = RegisterDTO.builder().dni(user.getDni())
+                    .name(user.getUsername()).lastname(user.getLastname())
                     .email(user.getEmail()).password(user.getPassword())
                     .build();
 
@@ -48,8 +49,8 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("El usuario no esta registrado");
     }
 
-    @PostMapping("/add")  // post para registrar un nuevo usuario
-    public ResponseEntity<?> registerUser(@RequestBody UserDTO user) {
+    @PostMapping("/register")  // post para registrar un nuevo usuario
+    public ResponseEntity<?> registerUser(@RequestBody RegisterDTO user) {
         if (this.incompleteUser(user))
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registro incompleto");
         try {
@@ -60,6 +61,11 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el usuario");
         }
+    }
+
+    @PostMapping("/login")  // post para registrar un nuevo usuario
+    public ResponseEntity<?> LogIn(@RequestBody LoginDTO user) {
+        return userService.logInUser(user);
     }
 
     @PutMapping("/{dni}/{email}/{pass}")  // put para actualizar el email y pass del usuario por su dni (almacenada en Hook React)

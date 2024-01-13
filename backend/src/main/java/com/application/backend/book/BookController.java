@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequestMapping("/book")
 public class BookController {
     @Autowired
-    BookServiceSrc bookService;
+    BookService bookService;
 
     @GetMapping("/all")  // get para mostrar la lista de libros
     public ResponseEntity<?> getBooks() {

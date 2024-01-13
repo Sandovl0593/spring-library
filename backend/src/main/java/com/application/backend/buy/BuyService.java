@@ -1,16 +1,29 @@
 package com.application.backend.buy;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
-public interface BuyService {
+@Service
+public class BuyService {
+    @Autowired
+    private BuyDAO buyDAO;
 
-    List<BuyModel> findAll();  // no usado en la UI
+    public List<BuyModel> findAll() {   // no usado en la UI
+        return buyDAO.findAll();
+    }
 
-    Optional<BuyModel> findByVoucher(String voucher);
+    public Optional<BuyModel> findByVoucher(String voucher) {
+        return buyDAO.findByVoucher(voucher);
+    }
 
-    void registerBuy(BuyModel buy);
+    public void registerBuy(BuyModel buy) {
+        buyDAO.register(buy);
+    }
 
-    List<BuyModel> findUserPurchase(String clientDni);
-
+    public List<BuyModel> findUserPurchase(String clientDni) {
+        return buyDAO.findUserPurchase(clientDni);
+    }
 }
